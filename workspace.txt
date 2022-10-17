@@ -1,0 +1,54 @@
+С правильным построением запросов ознакомьтесь в роутинге app/core/Route.php
+после выполнения своей части задания просьба сбросить в корень своей ветки экспортированную таблицу данных mysql
+
+ЕВГЕНИЙ
+отвечает за создание/изменение следующих файлов:
+
+app/controllers/Admin.php - класс Контроллер админ панели - производный класс от AbstractController
+просьба в названии Методов применять приставку Article(например createArticle(), editArticle() и т.д.)
+__construct()  -> вызываются Модель и Вьюшка
+index() -> обязательный метод интерфейса по умолчанию
+createArticle()
+editArticle()
+deleteArticle()
+......
+
+app/models/ArticleModel.php -  класс Модель для работы со статьями
+__construct() - > соединение с БД
+add()
+all()
+delete()
+rewrite() or update()
+......
+
+app/models/ValidationModel.php - если при добавлениее или чтении статей планируеш проводить какие-то проверки валидации, то создавай соответствующие методы в этом классе.
+fieldsArticle(array $articleInfo)
+.......
+
+images/articles/ - файл для сохранения изображений статей (файл уже создан - сюда сохраняеш фотки статей)
+
+
+ДАНИЛ
+отвечает за создание/изменение следующих файлов:
+
+app/controllers/Admin.php - класс Контроллер админ панели - производный класс от AbstractController
+просьба в названии Методов применять приставку User(например addUser(), delUser() и т.д.)
+createUser()
+editUser()
+deleteUser()
+......
+
+app/models/UserModel.php - класс Модель для работы с пользователями
+add()
+all()
+delete()
+rewrite() or update()
+......
+
+app/models/SessionModel.php -  класс Модель для работы с сессиями
+static public function start() - > прописываем инициализацию сессий,
+public static function setUserSession()   // создаем $_SESSION['login']
+public static function delUserSession()   // удаляем $_SESSION['login']
+
+app/models/ValidationModel.php -в этом файле работаеш с валидацией формы при добавлении нового юзера
+fieldsUser(array $userInfo)
