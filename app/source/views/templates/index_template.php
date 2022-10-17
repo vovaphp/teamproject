@@ -11,6 +11,7 @@
     <body>
     <header>
         <h1></h1>
+        <?php include_once \core\View::VIEWS_DIR . '/pages/'.$page.'_page.php'?>
     </header>
 
     </body>
