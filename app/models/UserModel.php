@@ -52,4 +52,18 @@ class UserModel
         $sql = "UPDATE {$this->table} SET `login` = '{$_POST['login']}', `e-mail` = '{$_POST['e-mail']}', `md5_hash_password` = '{$_POST['md5_hash_password']}' WHERE id = '{$_POST['id']}'";
         return $this->db->query($sql);
     }
+
+    /**
+     * return userId by session
+     * @return int or null
+     */
+    public function getUserId(): ?int
+    {
+        $sql = "SELECT id FROM `users` WHERE login = {$_SESSION['login']}";
+        $id = $this->db->query($sql);
+        if (!$id){
+            return null;
+        }
+        return $id;
+    }
 }
