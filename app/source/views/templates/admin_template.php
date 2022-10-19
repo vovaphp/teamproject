@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>Index Page</title>
     <link rel="stylesheet" href="/css/style.css">
+    <style type="text/css">
+        header,main,footer {background-color: rgba(255, 253, 253, 0.75);
+        }
+    </style>
 </head>
 <body>
 <header>
