@@ -9,11 +9,12 @@ use core\Route;
 use core\View;
 use models\ArticleModel;
 use models\UserModel;
+use models\SessionModel;
 
 class Admin extends AbstractController
 {
 private $userModel;
-
+private $SessionModel;
 private $imagePath = '/images/articles/';
 
 public function  __construct(){
@@ -21,6 +22,7 @@ public function  __construct(){
     $this->view = new  View('admin');
     $this->model = new ArticleModel();
     $this->userModel = new UserModel();
+    $this->SessionModel = new SessionModel();
 }
 
     public function index()
