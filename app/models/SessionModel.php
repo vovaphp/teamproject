@@ -16,10 +16,12 @@ class SessionModel
     static public function start(){
         session_start();
     }
-    public static function setUserSession($id){
+    public function setUserSession($id){
         self::start();
-        $login = "SELECT login FROM users WHERE id = {$id}";
-        $_SESSION['login'] = "$login";
+        $sql = "SELECT login FROM users WHERE id = {$id}";
+        $result = $this->db->query($sql);
+        $login = mysqli_fetch_assoc($result);
+        $_SESSION['login'] = $login['login'];
     }
     public static function delUserSession(){
         $_SESSION = array();
