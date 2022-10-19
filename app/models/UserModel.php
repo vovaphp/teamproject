@@ -20,7 +20,7 @@ class UserModel
      * @return mixed
      */
     public function add(array $user){
-        $sql = "INSERT INTO {$this->table} (login, `e-mail`, md5_hash_password) VALUES ('{$user['login']}', '{$user['e-mail']}', '{$user['md5_hash_password']}')";
+        $sql = "INSERT INTO {$this->table} (login, `e-mail`, password) VALUES ('{$user['login']}', '{$user['e-mail']}', '{$user['password']}')";
         return $this->db->query($sql);
     }
 
@@ -50,7 +50,7 @@ class UserModel
      * edit user by id
      */
     public function rewrite(){
-        $sql = "UPDATE {$this->table} SET `login` = '{$_POST['login']}', `e-mail` = '{$_POST['e-mail']}', `md5_hash_password` = '{$_POST['md5_hash_password']}' WHERE id = '{$_POST['id']}'";
+        $sql = "UPDATE {$this->table} SET `login` = '{$_POST['login']}', `e-mail` = '{$_POST['e-mail']}', `password` = '{$_POST['password']}' WHERE id = '{$_POST['id']}'";
         return $this->db->query($sql);
     }
 
