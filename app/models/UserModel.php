@@ -14,6 +14,12 @@ class UserModel
      */
     public $table = 'users';
 
+    public function __construct(){
+        $this->db = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        if ($this->db->connect_error != 0) {
+            throw new \Exception($this->db->connect_error);
+        }
+    }
     /**
      * @param array $user
      * add user into db
@@ -66,5 +72,15 @@ class UserModel
             return null;
         }
         return $id;
+    }
+
+    public function getUserPass($login)
+    {
+        $sql = "SELECT password FROM `users` WHERE login = '{$login}'";
+        $result = $this->db->query($sql);
+        if (!$result){
+            return null;
+        }
+        return mysqli_fetch_assoc($result);
     }
 }
