@@ -15,7 +15,7 @@ class Admin extends AbstractController
 {
 private $userModel;
 private $SessionModel;
-private $imagePath = '/images/articles/';
+private $imagesStorPath = 'images/articles/';
 
 public function  __construct(){
 
@@ -42,13 +42,14 @@ public function  __construct(){
     public function createArticle()
     {
         $imageFileName = $_FILES['imageFile'];
-        move_uploaded_file($imageFileName['tmp_name'],$this->imagePath.$imageFileName['name']);
+        $imagePath = $this->imagesStorPath.$imageFileName['name'];
+        move_uploaded_file($imageFileName['tmp_name'],$imagePath);
         $request = filter_input_array(INPUT_POST);
         //TODO validate
         $article = [
             'title' => $request['title'],
             'text' => $request['text'],
-            'url' => $this->imagePath.$imageFileName,
+            'url' => '/'.$imagePath,
         ];
 
         $userId= $this->userModel->getUserId( $_SESSION['login']); // id залогиненого пользователя
@@ -59,28 +60,37 @@ public function  __construct(){
 
     public function editing()
     {
-        var_dump($this->userModel->getUserId( $_SESSION['login']));
         $id = filter_input(INPUT_POST, 'id');
         $article = $this->model->show($id);
         $this->view->render('admin_edit', [
             'id'=>$article['id'],
             'title'=>$article['title'],
             'text'=>$article['text'],
-            'imageURL'=>$article['image'],
+            'imagePath'=>$article['image'],
         ]);
     }
 
 
     public function editArticle()
     {
-        $imageFileName = $_FILES['imageFile'];
         $request = filter_input_array(INPUT_POST);
+
+        if ($_FILES['imageFile']['name']){
+            $imageFileName = $_FILES['imageFile'];
+            $imagePath = $this->imagesStorPath.$imageFileName['name'];
+            move_uploaded_file($imageFileName['tmp_name'],$imagePath);
+            $imagePath='/'.$imagePath;
+        }else{
+            $imagePath = $request['newImageFile'];
+        }
+
         //TODO validate
         $article = [
             'title' => $request['title'],
             'text' => $request['text'],
-            'url' => $this->imagePath.$imageFileName,
+            'url' => $imagePath,
         ];
+
         $articleId = $request['id'];
         $userId= $this->userModel->getUserId( $_SESSION['login']);//id залогиненого пользователя
 
