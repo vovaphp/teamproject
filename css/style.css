@@ -163,6 +163,7 @@ div.lang img{
 .create-edit-form textarea{
     resize: vertical;
     padding: 10px;
+    margin-bottom: 10px;
 
 }
 
