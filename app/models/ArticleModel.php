@@ -64,8 +64,8 @@ class ArticleModel
 
     public function update(array $article, int $articleId, int $userId)
     {
-        $sqlUpdateArticle = "UPDATE {$this->table} SET title = '{$article['title']}', text = '{$article['text']}', url = '{$article['url']}' WHERE id = {$articleId} ";
-        $sqlAddEditRecord = "INSERT INTO users_edit_articles(`user_id`, `article_id`) VALUES ('{$articleId}','{$userId}')";
+        $sqlUpdateArticle = "UPDATE {$this->table} SET title = '{$article['title']}', text = '{$article['text']}', image = '{$article['url']}' WHERE id = {$articleId} ";
+        $sqlAddEditRecord = "INSERT INTO users_edit_articles (`user_id`, `article_id`) VALUES ('{$userId}','{$articleId}')";
 
         if ($this->db->query($sqlUpdateArticle)){
             return $this->db->query($sqlAddEditRecord);
