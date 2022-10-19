@@ -71,7 +71,7 @@ class Admin extends AbstractController
     public function deleteUser(){
         $id = filter_input( INPUT_POST, 'id');
         $this->model->delete($id);
-        Route::redirect('teamproject/index');
+        Route::redirect('teamproject/admin/users');
     }
     public function exitUser(){
         SessionModel::delUserSession();
