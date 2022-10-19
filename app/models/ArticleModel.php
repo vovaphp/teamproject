@@ -81,7 +81,7 @@ class ArticleModel
 
     public function getAllTitle()
     {
-        $sql = "SELECT title FROM {$this->table};";
+        $sql = "SELECT id, title FROM {$this->table};";
 
         $result = $this->db->query($sql);
         if (!$result) {
