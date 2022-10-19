@@ -21,11 +21,11 @@
                     <div class="del-edit-btn-box">
                         <form action="<?=\core\Route::url('admin','destroy')?>" method="post">
                             <input type="hidden" name="id" value="<?=$article['id']?>">
-                            <button><img class="icons" src="/img/delete_icon.png" alt="delete"></button>
+                            <button><img class="icons" src="/images/delete_icon.png" alt="delete"></button>
                         </form>
                         <form action="<?=\core\Route::url('admin','edit')?>" method="post">
                             <input type="hidden" name="id" value="<?=$article['id']?>">
-                            <button><img class="icons" src="/img/edit_icon.png" alt="edit"></button>
+                            <button><img class="icons" src="/images/edit_icon.png" alt="edit"></button>
                         </form>
                     </div>
 
