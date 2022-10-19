@@ -41,7 +41,18 @@ class ArticleModel
         //результат выборки:
         //id 	title 	image   text 	date 	login
     }
+    
+    public function selectArticle(int $id)
+    {
+        $sql = "SELECT * FROM {$this->table} WHERE id = $id";
+        $result = $this->db->query($sql);
+        if (!$result) {
+            //TODO log with select error
+            return [];
+        }
+        return $result->fetch_assoc();
 
+    }
 
     public function add(array $article, int $userId)
     {
