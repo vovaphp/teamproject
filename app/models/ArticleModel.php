@@ -99,12 +99,6 @@ class ArticleModel
     {
         $sql = "UPDATE {$this->table} SET title = '$title', text = '$text' WHERE id = '$id'";
         $result = $this->db->query($sql);
-    }*/
-
-}
-
-
-        //TODO debug
         return $result->fetch_assoc(MYSQLI_ASSOC);
     }
 
