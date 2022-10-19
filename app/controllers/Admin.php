@@ -8,9 +8,11 @@ use core\AbstractController;
 use core\Route;
 use core\View;
 use models\ArticleModel;
+use models\UserModel;
 
 class Admin extends AbstractController
 {
+private $userModel;
 
 private $imagePath = '/images/articles/';
 
@@ -18,7 +20,7 @@ public function  __construct(){
 
     $this->view = new  View('admin');
     $this->model = new ArticleModel();
-
+    $this->userModel = new UserModel();
 }
 
     public function index()
@@ -46,7 +48,7 @@ public function  __construct(){
             'url' => $this->imagePath.$imageFileName,
         ];
 
-        $userId= 1;//Todo здесь должен быть id залогиненого пользователя
+        $userId= $this->userModel->getUserId(); // id залогиненого пользователя
 
         $this->model->add($article, $userId);
         Route::redirect(Route::url('admin', 'index'));
@@ -71,7 +73,7 @@ public function  __construct(){
             'url' => $this->imagePath.$imageFileName,
         ];
         $articleId = $request['id'];
-        $userId= 1;//Todo здесь должен быть id залогиненого пользователя
+        $userId= $this->userModel->getUserId();//id залогиненого пользователя
 
         $this->model->update($article, $articleId, $userId);
         Route::redirect(Route::url('admin', 'index'));
