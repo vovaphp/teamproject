@@ -11,3 +11,4 @@ spl_autoload_register(function ($className) {
 });
 
 \core\Route::init();
+\models\SessionModel::start();
