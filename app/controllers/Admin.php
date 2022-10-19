@@ -85,6 +85,77 @@ public function  __construct(){
         $this->model->delete($id);
         Route::redirect(Route::url('admin', 'index'));
     }
+    /**
+     * registration action
+     */
+    public function createUser(){
+        $this->view->render('admin_registration');
+    }
 
+    /**
+     * authorisation action
+     */
+    public function authorisation(){
+        $this->view->render('admin_authorisation');
+    }
 
+    /**
+     * checking user param and sign-in
+     */
+    public function signIn(){
+        $password = "SELECT password FROM users WHERE login = {$_POST['login']}";
+        if (password_verify($_POST['password'], $password) == true){
+            $id = "SELECT id FROM `users` WHERE login = {$_POST['login']}";
+            SessionModel::setUserSession("$id");
+            Route::redirect('teamproject/index');
+        }
+        Route::redirect('teamproject/admin/authorisation');
+    }
+
+    /**
+     * check validation, save user in db and starting his session
+     */
+    public function saveUser(){
+        if (ValidationModel::fieldsUser($_POST) == true){
+            $user = $_POST;
+            $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
+            $this->userModel->add($user);
+            $id = "SELECT id FROM `users` WHERE login = {$user['login']}";
+            SessionModel::setUserSession("$id");
+            Route::redirect('teamproject/index');
+        }
+        Route::redirect('teamproject/admin/registration');
+    }
+    /**
+     * deleting user and redirect on main page
+     */
+    public function deleteUser(){
+        $id = filter_input( INPUT_POST, 'id');
+        $this->userModel->delete($id);
+        Route::redirect('teamproject/admin/users');
+    }
+    public function editUser(){
+        $users = $this->userModel->all();
+        $request = filter_input(INPUT_POST, 'id');
+        foreach ($users as $user) {
+            $searchArticle = array_search($request, $user);
+            if ($searchArticle === 'id') {
+                $this->view->render('admin_editUser', [
+                    'user' => $user,
+                ]);
+            }
+        }
+    }
+    public function editUserSave(){
+        $user = filter_input_array(INPUT_POST);
+        $this->userModel->rewrite($user);
+        Route::redirect('teamproject/admin/users');
+    }
+    /**
+     * end user session and redirect on main page
+     */
+    public function exitUser(){
+        SessionModel::delUserSession();
+        Route::redirect('teamproject/index');
+    }
 }
