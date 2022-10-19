@@ -107,9 +107,9 @@ public function  __construct(){
         if (password_verify($_POST['password'], $password) == true){
             $id = "SELECT id FROM `users` WHERE login = {$_POST['login']}";
             SessionModel::setUserSession("$id");
-            Route::redirect('teamproject/index');
+            Route::redirect('/admin/index');
         }
-        Route::redirect('teamproject/admin/authorisation');
+        Route::redirect('/admin/authorisation');
     }
 
     /**
