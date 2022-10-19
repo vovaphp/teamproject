@@ -105,10 +105,10 @@ public function  __construct(){
      * checking user param and sign-in
      */
     public function signIn(){
-        $password = "SELECT password FROM users WHERE login = {$_POST['login']}";
-        if (password_verify($_POST['password'], $password) == true){
-            $id = "SELECT id FROM `users` WHERE login = {$_POST['login']}";
-            SessionModel::setUserSession("$id");
+        $password = $this->userModel->getUserPass($_POST['login']);
+        if (password_verify($_POST['password'], $password['password']) == true){
+            $id = $this->userModel->getUserId($_POST['login']);
+            $this->SessionModel->setUserSession($id['id']);
             Route::redirect('/admin/index');
         }
         Route::redirect('/admin/authorisation');
