@@ -23,13 +23,24 @@ class Admin extends AbstractController
     {
         // TODO: Implement index method.
     }
+
+    /**
+     * registration action
+     */
     public function createUser(){
         $this->view->render('admin_registration');
     }
 
+    /**
+     * authorisation action
+     */
     public function authorisation(){
         $this->view->render('admin_authorisation');
     }
+
+    /**
+     * checking user param and sign-in
+     */
     public function signIn(){
         $password = "SELECT password FROM users WHERE login = {$_POST['login']}";
         if (password_verify($_POST['password'], $password) == true){
@@ -39,6 +50,10 @@ class Admin extends AbstractController
         }
         Route::redirect('teamproject/admin/authorisation');
     }
+
+    /**
+     * check validation, save user in db and starting his session
+     */
     public function saveUser(){
         if (ValidationModel::fieldsUser($_POST) == true){
             $user = $_POST;
@@ -50,7 +65,9 @@ class Admin extends AbstractController
         }
             Route::redirect('teamproject/admin/registration');
     }
-
+    /**
+     * deleting user and redirect on main page
+     */
     public function deleteUser(){
         $id = filter_input( INPUT_POST, 'id');
         $this->model->delete($id);
