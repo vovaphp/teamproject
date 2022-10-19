@@ -79,7 +79,7 @@ class ArticleModel
         return $this->db->query($sql);
     }
 
-    public function editor(int $id)
+/*    public function editor(int $id)
     {
         $sql = "SELECT * FROM {$this->table} WHERE id = $id";
         $result = $this->db->query($sql);
@@ -89,7 +89,7 @@ class ArticleModel
         }
         return $result->fetch_assoc();
 
-    }
+    }*/
 
     public function show(int $id)
     {
@@ -106,15 +106,15 @@ class ArticleModel
 
     }
 
-    public function rewriter(int $id, string $title, string $text)
+/*    public function rewriter(int $id, string $title, string $text)
     {
         $sql = "UPDATE {$this->table} SET title = '$title', text = '$text' WHERE id = '$id'";
         $result = $this->db->query($sql);
         return $result->fetch_assoc(MYSQLI_ASSOC);
-    }
+    }*/
 
 
-    public function getAllTitle()
+/*    public function getAllTitle()
     {
         $sql = "SELECT id, title FROM {$this->table};";
 
@@ -125,5 +125,5 @@ class ArticleModel
         }
         //TODO debug
         return $result->fetch_all(MYSQLI_ASSOC);
-    }
+    }*/
 }

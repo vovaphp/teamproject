@@ -14,6 +14,12 @@ class UserModel
      */
     public $table = 'users';
 
+    public function __construct(){
+        $this->db = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        if ($this->db->connect_error != 0) {
+            throw new \Exception($this->db->connect_error);
+        }
+    }
     /**
      * @param array $user
      * add user into db
@@ -58,13 +64,24 @@ class UserModel
      * return userId by session
      * @return int or null
      */
-    public function getUserId(): ?int
+    public function getUserId($login)
     {
-        $sql = "SELECT id FROM `users` WHERE login = {$_SESSION['login']}";
-        $id = $this->db->query($sql);
-        if (!$id){
+        $sql = "SELECT id FROM `users` WHERE login = '{$login}'";
+        var_dump($sql);
+        $result = $this->db->query($sql);
+        if (!$result){
             return null;
         }
-        return $id;
+        return mysqli_fetch_assoc($result);
+    }
+
+    public function getUserPass($login)
+    {
+        $sql = "SELECT password FROM `users` WHERE login = '{$login}'";
+        $result = $this->db->query($sql);
+        if (!$result){
+            return null;
+        }
+        return mysqli_fetch_assoc($result);
     }
 }

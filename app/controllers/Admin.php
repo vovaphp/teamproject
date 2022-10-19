@@ -14,7 +14,7 @@ use models\SessionModel;
 class Admin extends AbstractController
 {
 private $userModel;
-
+private $SessionModel;
 private $imagePath = '/images/articles/';
 
 public function  __construct(){
@@ -22,6 +22,7 @@ public function  __construct(){
     $this->view = new  View('admin');
     $this->model = new ArticleModel();
     $this->userModel = new UserModel();
+    $this->SessionModel = new SessionModel();
 }
 
     public function index()
@@ -111,10 +112,10 @@ public function  __construct(){
      * checking user param and sign-in
      */
     public function signIn(){
-        $password = "SELECT password FROM users WHERE login = {$_POST['login']}";
-        if (password_verify($_POST['password'], $password) == true){
-            $id = "SELECT id FROM `users` WHERE login = {$_POST['login']}";
-            SessionModel::setUserSession("$id");
+        $password = $this->userModel->getUserPass($_POST['login']);
+        if (password_verify($_POST['password'], $password['password']) == true){
+            $id = $this->userModel->getUserId($_POST['login']);
+            $this->SessionModel->setUserSession($id['id']);
             Route::redirect('/admin/index');
         }
         Route::redirect('/admin/authorisation');
@@ -130,9 +131,9 @@ public function  __construct(){
             $this->userModel->add($user);
             $id = "SELECT id FROM `users` WHERE login = {$user['login']}";
             SessionModel::setUserSession("$id");
-            Route::redirect('teamproject/index');
+            Route::redirect('/index');
         }
-        Route::redirect('teamproject/admin/registration');
+        Route::redirect('/admin/registration');
     }
     /**
      * deleting user and redirect on main page
@@ -140,7 +141,7 @@ public function  __construct(){
     public function deleteUser(){
         $id = filter_input( INPUT_POST, 'id');
         $this->userModel->delete($id);
-        Route::redirect('teamproject/admin/users');
+        Route::redirect('/admin/users');
     }
     public function editUser(){
         $users = $this->userModel->all();
@@ -157,13 +158,13 @@ public function  __construct(){
     public function editUserSave(){
         $user = filter_input_array(INPUT_POST);
         $this->userModel->rewrite($user);
-        Route::redirect('teamproject/admin/users');
+        Route::redirect('/admin/users');
     }
     /**
      * end user session and redirect on main page
      */
     public function exitUser(){
         SessionModel::delUserSession();
-        Route::redirect('teamproject/index');
+        Route::redirect('/index');
     }
 }
