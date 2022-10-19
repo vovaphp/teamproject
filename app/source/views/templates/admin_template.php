@@ -15,7 +15,7 @@
     <p>ADMIN PANEL</p>
     <div>
         <ul id="main-menu">
-                    <li class="page"><a href="<?=\core\Route::url('admin','createArticle')?>">Добавить статью</a></li>
+                    <li class="page"><a href="<?=\core\Route::url('admin','newArticle')?>">Добавить статью</a></li>
         </ul>
     </div>
     <div class="lang">
