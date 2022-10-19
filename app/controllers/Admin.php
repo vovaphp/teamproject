@@ -122,9 +122,9 @@ public function  __construct(){
             $this->userModel->add($user);
             $id = "SELECT id FROM `users` WHERE login = {$user['login']}";
             SessionModel::setUserSession("$id");
-            Route::redirect('teamproject/index');
+            Route::redirect('/index');
         }
-        Route::redirect('teamproject/admin/registration');
+        Route::redirect('/admin/registration');
     }
     /**
      * deleting user and redirect on main page
@@ -132,7 +132,7 @@ public function  __construct(){
     public function deleteUser(){
         $id = filter_input( INPUT_POST, 'id');
         $this->userModel->delete($id);
-        Route::redirect('teamproject/admin/users');
+        Route::redirect('/admin/users');
     }
     public function editUser(){
         $users = $this->userModel->all();
@@ -149,13 +149,13 @@ public function  __construct(){
     public function editUserSave(){
         $user = filter_input_array(INPUT_POST);
         $this->userModel->rewrite($user);
-        Route::redirect('teamproject/admin/users');
+        Route::redirect('/admin/users');
     }
     /**
      * end user session and redirect on main page
      */
     public function exitUser(){
         SessionModel::delUserSession();
-        Route::redirect('teamproject/index');
+        Route::redirect('/index');
     }
 }
