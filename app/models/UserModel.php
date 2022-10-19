@@ -49,8 +49,8 @@ class UserModel
     /**
      * edit user by id
      */
-    public function rewrite(){
-        $sql = "UPDATE {$this->table} SET `login` = '{$_POST['login']}', `e-mail` = '{$_POST['e-mail']}', `password` = '{$_POST['password']}' WHERE id = '{$_POST['id']}'";
+    public function rewrite($user){
+        $sql = "UPDATE {$this->table} SET `login` = '{$user['login']}', `e-mail` = '{$user['e-mail']}', `password` = '{$user['password']}' WHERE id = '{$user['id']}'";
         return $this->db->query($sql);
     }
 
