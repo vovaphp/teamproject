@@ -9,6 +9,7 @@ use core\Route;
 use core\View;
 use models\ArticleModel;
 use models\UserModel;
+use models\SessionModel;
 
 class Admin extends AbstractController
 {
