@@ -15,7 +15,11 @@
         </ul>
     </div>
     <div class="lang">
-        <p>Привет, <?=$_SESSION['login']?></p>
+        <p>Привет, <?
+            if (isset($_SESSION['login'])){
+               echo $_SESSION['login'];
+            }
+            ?></p>
         <p><a href="<?=\core\Route::url('admin','createUser')?>">Добавить пользователя</a></p>
         <p><a href="<?=\core\Route::url('admin','exitUser')?>">Выйти</a></p>
     </div>
