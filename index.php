@@ -9,6 +9,5 @@ spl_autoload_register(function ($className) {
     }
     return false;
 });
-
-\core\Route::init();
 \models\SessionModel::start();
+\core\Route::init();
