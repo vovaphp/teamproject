@@ -73,6 +73,26 @@ class Admin extends AbstractController
         $this->model->delete($id);
         Route::redirect('teamproject/admin/users');
     }
+    public function editUser(){
+        $users = $this->model->all();
+        $request = filter_input(INPUT_POST, 'id');
+        foreach ($users as $user) {
+            $searchArticle = array_search($request, $user);
+            if ($searchArticle === 'id') {
+                $this->view->render('admin_editUser', [
+                    'user' => $user,
+                ]);
+            }
+        }
+    }
+    public function editUserSave(){
+        $user = filter_input_array(INPUT_POST);
+        $this->model->rewrite($user);
+        Route::redirect('teamproject/admin/users');
+    }
+    /**
+     * end user session and redirect on main page
+     */
     public function exitUser(){
         SessionModel::delUserSession();
         Route::redirect('teamproject/index');
