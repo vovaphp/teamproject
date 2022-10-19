@@ -42,7 +42,8 @@ class UserModel
      * delete user by id
      */
     public function delete(int $id){
-        $sql = "DELETE FROM users WHERE `users`.`id` = {$id}";
+        $sql = "DELETE FROM {$this->table} WHERE id = {$id}";
+        return $this->db->query($sql);
     }
 
     /**
