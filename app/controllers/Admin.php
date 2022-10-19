@@ -41,6 +41,7 @@ public function  __construct(){
     public function createArticle()
     {
         $imageFileName = $_FILES['imageFile'];
+        move_uploaded_file($imageFileName['tmp_name'],$this->imagePath.$imageFileName['name']);
         $request = filter_input_array(INPUT_POST);
         //TODO validate
         $article = [
@@ -49,7 +50,7 @@ public function  __construct(){
             'url' => $this->imagePath.$imageFileName,
         ];
 
-        $userId= $this->userModel->getUserId(); // id залогиненого пользователя
+        $userId= $this->userModel->getUserId( $_SESSION['login']); // id залогиненого пользователя
 
         $this->model->add($article, $userId);
         Route::redirect(Route::url('admin', 'index'));
@@ -57,9 +58,15 @@ public function  __construct(){
 
     public function editing()
     {
+        var_dump($this->userModel->getUserId( $_SESSION['login']));
         $id = filter_input(INPUT_POST, 'id');
         $article = $this->model->show($id);
-        $this->view->render('admin_edit', $article);
+        $this->view->render('admin_edit', [
+            'id'=>$article['id'],
+            'title'=>$article['title'],
+            'text'=>$article['text'],
+            'imageURL'=>$article['image'],
+        ]);
     }
 
 
@@ -74,7 +81,7 @@ public function  __construct(){
             'url' => $this->imagePath.$imageFileName,
         ];
         $articleId = $request['id'];
-        $userId= $this->userModel->getUserId();//id залогиненого пользователя
+        $userId= $this->userModel->getUserId( $_SESSION['login']);//id залогиненого пользователя
 
         $this->model->update($article, $articleId, $userId);
         Route::redirect(Route::url('admin', 'index'));
