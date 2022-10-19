@@ -109,3 +109,63 @@ div.lang img{
     padding: 5px;
     margin-top: 5px;
 }
+#articles-table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 2px solid #b3adad;
+    padding:5px;
+    margin:10px auto ;
+}
+
+#articles-table th{
+    border:1px solid #b3adad;
+    padding:5px;
+    background: #f0f0f0;
+    color: #313030;
+}
+
+#articles-table td{
+    border:1px solid #b3adad;
+    text-align:center;
+    padding:5px;
+    background: #ffffff;
+    color: #313030;
+}
+
+.del-edit-btn-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.del-edit-btn-box button{
+    margin: 0 2px 0 2px;
+}
+.icons{
+    height: 16px;
+    margin: 2px;
+}
+
+.create-edit-form{
+    display: flex;
+    flex-direction: column;
+
+}
+.create-edit-form label{
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+.create-edit-form .submit{
+    margin: 15px auto;
+    width: 100px;
+    padding: 5px;
+}
+
+.create-edit-form textarea{
+    resize: vertical;
+    padding: 10px;
+
+}
+
+.create-edit-form #title{
+    padding: 5px 10px 5px 10px;
+}
