@@ -10,7 +10,7 @@ use core\View;
 use models\ArticleModel;
 use models\UserModel;
 use models\SessionModel;
-
+use models\ValidationModel;
 class Admin extends AbstractController
 {
 private $userModel;
@@ -126,7 +126,7 @@ public function  __construct(){
             SessionModel::setUserSession("$id");
             Route::redirect('/index');
         }
-        Route::redirect('/admin/registration');
+        Route::redirect('/admin/createUser');
     }
     /**
      * deleting user and redirect on main page
