@@ -15,23 +15,24 @@
     <p>ADMIN PANEL</p>
     <div>
         <ul id="main-menu">
-            <li class="page"><a href="/">Главная</a></li>
-            <?
-            if (isset($_SESSION['login'])):?>
-                <li class="page"><a href="<?=\core\Route::url('admin','newArticle')?>">Добавить статью</a></li>
-            <?php endif ?>
+            <li class="page"><a href="/">HOME</a></li>
+            <li class="page"><a href="<?=\core\Route::url('admin','index')?>">Cтатьи</a></li>
+            <li class="page"><a href="<?=\core\Route::url('admin','newArticle')?>">Добавить статью</a></li>
         </ul>
     </div>
     <div class="lang">
-        <p>
-            <?
+        <p> <?php
             if (isset($_SESSION['login'])):?>
-            Привет,
-            <?=$_SESSION['login']; ?>
-                <p><a href="<?=\core\Route::url('admin','users')?>">Список пользователей</a></p>
-                <p><a href="<?=\core\Route::url('admin','createUser')?>">Добавить пользователя</a></p>
-                <p><a href="<?=\core\Route::url('admin','exitUser')?>">Выйти</a></p>
-            <?php endif ?></p>
+                Привет
+            <?=$_SESSION['login'];?>
+        </p>
+        <p><a href="<?=\core\Route::url('admin','users')?>">Список пользователей</a></p>
+        <p><a href="<?=\core\Route::url('admin','createUser')?>">Добавить пользователя</a></p>
+        <p><a href="<?=\core\Route::url('admin','exitUser')?>">Выйти</a></p>
+
+            <?php endif; ?>
+
+
     </div>
 </header>
 <main>
