@@ -1,9 +1,9 @@
-<h2>Edit user</h2>
-<form method="post" action="<?=core\Route::url('admin', 'editUserSave') ?>">
+<h2 class="userForm">Edit user</h2>
+<form class="userForm" method="post" action="<?=core\Route::url('admin', 'editUserSave') ?>">
     <label for="title">Login</label>
-    <input type="text" name="login" required id="login" value="<?= $user['login']?>">
+    <input class="userForm" type="text" name="login" required id="login" value="<?= $user['login']?>">
     <label for="text">E-mail</label>
-    <input type="text" name="e-mail" required id="e-mail" value="<?= $user['e-mail']?>">
-    <input type="hidden" name="id" id="id" value="<?= $user['id']?>">
-    <input type="submit" value="Save"/>
+    <input class="userForm" type="text" name="e-mail" required id="e-mail" value="<?= $user['e-mail']?>">
+    <input class="userForm" type="hidden" name="id" id="id" value="<?= $user['id']?>">
+    <input class="userForm" type="submit" value="Save"/>
 </form>

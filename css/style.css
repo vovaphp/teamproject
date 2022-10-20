@@ -170,3 +170,33 @@ div.lang img{
 .create-edit-form #title{
     padding: 5px 10px 5px 10px;
 }
+h2.userForm{
+    text-align: center;
+}
+form.userForm{
+    margin: 0 auto 2vh;
+    display: block;
+    width: 24vw;
+    border: #fd360e 1vh solid;
+}
+form.userForm>label{
+    display: block;
+    text-align: center;
+}
+input.userForm{
+    margin-left: 7vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    width: 10vw;
+}
+table.userForm{
+    border-collapse: collapse;
+    margin: 0 auto;
+    border: 2px #000000 solid;
+}
+table.userForm> th, tr, td{
+    border: 2px #000000 solid;
+}
+td.action>form>button{
+    width: 100%;
+}

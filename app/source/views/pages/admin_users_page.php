@@ -1,5 +1,5 @@
-<h3>Users list</h3>
-<table>
+<h2 class="userForm">Users list</h2>
+<table class="userForm">
     <thead>
     <tr>
         <th>#</th>
@@ -15,13 +15,13 @@
                 <td><?=$user['id'] ?></td>
                 <td><?=$user['login'] ?></td>
                 <td><?=$user['e-mail'] ?></td>
-                <td>
-                    <form action="<?= \core\Route::url('admin', 'deleteUser') ?>" method="post">
+                <td class="action">
+                    <form  action="<?= \core\Route::url('admin', 'deleteUser') ?>" method="post">
                         <input type="hidden" name="id" value="<?= $user['id']?>">
                         <button>&#128465;</button>
                     </form>
                 </td>
-                <td>
+                <td class="action">
                     <form action="<?= \core\Route::url('admin', 'editUser') ?>" method="post">
                         <input type="hidden" name="id" value="<?= $user['id']?>">
                         <button>&#9998;</button>

@@ -1,6 +1,6 @@
-<h3>Authorisation</h3>
-<form action="<?= \core\Route::url('admin', 'signIn') ?>" method="post">
-    <input type="text" name="login" required placeholder="login">
-    <input type="password" name="password" required placeholder="password">
-    <input type="submit" value="Sign-in">
+<h2 class="userForm">Authorisation</h2>
+<form class="userForm" action="<?= \core\Route::url('admin', 'signIn') ?>" method="post">
+    <input class="userForm" type="text" name="login" required placeholder="login">
+    <input class="userForm" type="password" name="password" required placeholder="password">
+    <input class="userForm" type="submit" value="Sign-in">
 </form>
