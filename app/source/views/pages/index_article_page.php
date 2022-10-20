@@ -1,6 +1,6 @@
 <div class="article">
     <h2><?=$title?></h2>
-    <img height="300px" src="<?=$image?>">
+    <img height="300px" src="/images/articles/<?=$image?>">
     <p><?=$text ?></p>
     <p class="public">Опубликовано <?=$date?></p>
 </div>
