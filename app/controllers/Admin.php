@@ -111,6 +111,12 @@ public function  __construct(){
         $this->view->render('admin_registration');
     }
 
+    public function users(){
+        $users = $this->userModel->all();
+        $this->view->render('admin_users', [
+            'users' => $users,
+        ]);
+    }
     /**
      * authorisation action
      */
