@@ -147,7 +147,7 @@ public function  __construct(){
             $this->userModel->add($user);
             $id = $this->userModel->getUserId($_POST['login']);
             $this->SessionModel->setUserSession($id);
-            Route::redirect('/index');
+            Route::redirect('/admin/users');
         }
         Route::redirect('/admin/createUser');
     }
