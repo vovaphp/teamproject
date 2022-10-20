@@ -200,3 +200,10 @@ table.userForm> th, tr, td{
 td.action>form>button{
     width: 100%;
 }
+#hidden{
+    margin: 0 auto;
+    width: 30vw;
+}
+.error{
+    border-color: #b8352f;
+}

@@ -27,7 +27,6 @@ function validPassword (password){
     }
     return symbolsOfPass.findIndex(isLatinSymbol) !== -1 && symbolsOfPass.findIndex(isNumSymbol) !== -1;
 }
-
 form.onsubmit = function (e) {
     let inputsEmpty = Array.from(formInputs).filter(input => input.value === '');
     msgError = [];
@@ -40,7 +39,7 @@ form.onsubmit = function (e) {
     });
     if (inputsEmpty.length !== 0) {
         msgError.push('Вы не заполнили все поля ввода.');
-        // TODO create window with msgError
+        document.getElementById('hidden').innerHTML = msgError;
         return false;
     } else {
         let counter = 0;
@@ -62,7 +61,7 @@ form.onsubmit = function (e) {
             msgError.push('Веддённый e-mail адрес не является корректным.');
         }
         if (counter >0){
-            // TODO create window with msgError
+            document.getElementById('hidden').innerHTML = msgError;
             return false;
         }
     }

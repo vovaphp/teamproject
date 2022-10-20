@@ -1,8 +1,12 @@
 <h2 class="userForm">Registration</h2>
-<form class="userForm" action="<?=  \core\Route::url('admin', 'saveUser')?>" method="post">
-    <input class="userForm" type="text" name="login" required placeholder="login">
-    <input class="userForm" type="text" name="e-mail" required placeholder="e-mail">
-    <input class="userForm" type="password" name="password" required placeholder="password">
-    <input class="userForm" type="password" name="passRepeat" required placeholder="passRepeat">
-    <input class="userForm" type="submit" value="Create account">
+<form class="userForm" action="<?=  \core\Route::url('admin', 'saveUser')?>" method="post" novalidate>
+    <input class="userForm input" type="text" name="login" placeholder="login">
+    <input class="userForm input" type="text" name="e-mail" placeholder="e-mail">
+    <input class="userForm input" type="password" name="password" placeholder="password">
+    <input class="userForm input" type="password" name="passRepeat" placeholder="passRepeat">
+    <input class="userForm input" type="submit" value="Create account">
 </form>
+<div id="hidden"></div>
+    <?php if($page == 'admin_registration'): ?>
+<script src="/js/validation_script.js"></script>
+    <?php endif;?>
