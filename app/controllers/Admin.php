@@ -125,7 +125,7 @@ public function  __construct(){
         $password = $this->userModel->getUserPass($_POST['login']);
         if (password_verify($_POST['password'], $password['password']) == true){
             $id = $this->userModel->getUserId($_POST['login']);
-            $this->SessionModel->setUserSession($id['id']);
+            $this->SessionModel->setUserSession($id);
             Route::redirect('/admin/index');
         }
         Route::redirect('/admin/authorisation');
@@ -139,8 +139,8 @@ public function  __construct(){
             $user = $_POST;
             $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
             $this->userModel->add($user);
-            $id = "SELECT id FROM `users` WHERE login = {$user['login']}";
-            SessionModel::setUserSession("$id");
+            $id = $this->userModel->getUserId($_POST['login']);
+            $this->SessionModel->setUserSession($id);
             Route::redirect('/index');
         }
         Route::redirect('/admin/createUser');
@@ -157,8 +157,8 @@ public function  __construct(){
         $users = $this->userModel->all();
         $request = filter_input(INPUT_POST, 'id');
         foreach ($users as $user) {
-            $searchArticle = array_search($request, $user);
-            if ($searchArticle === 'id') {
+            $searchUser = array_search($request, $user);
+            if ($searchUser === 'id') {
                 $this->view->render('admin_editUser', [
                     'user' => $user,
                 ]);
