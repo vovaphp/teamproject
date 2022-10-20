@@ -168,6 +168,7 @@ public function  __construct(){
     public function editUserSave(){
         $user = filter_input_array(INPUT_POST);
         $this->userModel->rewrite($user);
+        $this->SessionModel->setUserSession($user['id']);
         Route::redirect('/admin/users');
     }
     /**
