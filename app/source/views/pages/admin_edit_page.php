@@ -1,5 +1,5 @@
 <h2>Edit article</h2>
-<form class="create-edit-form" action="<?= \core\Route::url('admin', 'editarticle') ?>" method="post" enctype="multipart/form-data">
+<form class="create-edit-form" action="<?= \core\Route::url('admin','admin', 'editarticle') ?>" method="post" enctype="multipart/form-data">
     <?php if (!empty($options)): ?>
 
         <label for="title">Title:</label>

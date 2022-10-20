@@ -58,7 +58,7 @@ public function  __construct(){
         $userId= $this->userModel->getUserId( $_SESSION['login']); // id залогиненого пользователя
 
         $this->model->add($article, $userId);
-        Route::redirect(Route::url('admin', 'index'));
+        Route::redirect(Route::url('admin','admin', 'index'));
     }
 
     public function editing()
@@ -98,14 +98,14 @@ public function  __construct(){
         $userId= $this->userModel->getUserId( $_SESSION['login']);//id залогиненого пользователя
 
         $this->model->update($article, $articleId, $userId);
-        Route::redirect(Route::url('admin', 'index'));
+        Route::redirect(Route::url('admin','admin', 'index'));
     }
 
     public function deleteArticle()
     {
         $id = filter_input(INPUT_POST, 'id');
         $this->model->delete($id);
-        Route::redirect(Route::url('admin', 'index'));
+        Route::redirect(Route::url('admin','admin', 'index'));
     }
     /**
      * registration action
@@ -132,9 +132,9 @@ public function  __construct(){
             $this->userModel->add($user);
             $id = $this->userModel->getUserId($_POST['login']);
             $this->SessionModel->setUserSession($id);
-            Route::redirect('/admin/users');
+            Route::redirect('/admin/admin/users');
         }
-        Route::redirect('/admin/createUser');
+        Route::redirect('/admin/admin/createUser');
     }
     /**
      * deleting user and redirect on main page
@@ -144,10 +144,10 @@ public function  __construct(){
         if ($id == $this->userModel->getUserId($_SESSION['login'])){
             $this->userModel->delete($id);
             SessionModel::delUserSession();
-            Route::redirect('/index');
+            Route::redirect('/');
         }
         $this->userModel->delete($id);
-        Route::redirect('/admin/users');
+        Route::redirect('/admin/admin/users');
     }
     public function editUser(){
         $users = $this->userModel->all();
@@ -165,13 +165,13 @@ public function  __construct(){
         $user = filter_input_array(INPUT_POST);
         $this->userModel->rewrite($user);
         $this->SessionModel->setUserSession($user['id']);
-        Route::redirect('/admin/users');
+        Route::redirect('/admin/admin/users');
     }
     /**
      * end user session and redirect on main page
      */
     public function exitUser(){
         SessionModel::delUserSession();
-        Route::redirect('/index');
+        Route::redirect('/');
     }
 }

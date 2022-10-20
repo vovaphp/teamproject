@@ -11,24 +11,28 @@ class Route
         $path = $_SERVER['REQUEST_URI'];
         $urlComponents = explode('/', $path);
         array_shift($urlComponents);
-        if (count($urlComponents) > 3) {
+        if (count($urlComponents) > 4) {
             self::notFound();
         }
-        $controllerName = 'index';
+        $folderName = 'index';
         if (!empty($urlComponents[0])) {
+            $folderName = strtolower($urlComponents[0]);
+        }
+        $controllerName = 'index';
+        if (!empty($urlComponents[1])) {
             $controllerName = strtolower($urlComponents[0]);
         }
         $actionName = 'index';
-        if (!empty($urlComponents[1])) {
-            $actionName = strtolower($urlComponents[1]);
+        if (!empty($urlComponents[2])) {
+            $actionName = strtolower($urlComponents[2]);
         }
         $controllerClass = 'controllers\\' . ucfirst($controllerName);
         if (!class_exists($controllerClass)) {
             self::notFound();
         }
         $controller = new $controllerClass;
-        if (!empty($urlComponents[2])) {
-            $actionOptions = $urlComponents[2];
+        if (!empty($urlComponents[3])) {
+            $actionOptions = $urlComponents[3];
             self::actionCaller($controller,$actionName,$actionOptions);
         }else{
             self::actionCaller($controller,$actionName);
@@ -49,15 +53,18 @@ class Route
         exit();
     }
 
-    static public function url(string $controller = null, string $action = null,string $actionOption = null)
+    static public function url(string $folder = null,string $controller = null, string $action = null,string $actionOption = null)
     {
         $url = '/';
-        if (!empty($controller)) {
-            $url .= strtolower($controller);
-            if (!empty($action)) {
-                $url .= '/' . strtolower($action);
-                if (!empty($actionOption)) {
-                    $url .= '/' . $actionOption;
+        if (!empty($folder)) {
+            $url .= strtolower($folder);
+            if (!empty($controller)) {
+                $url .= '/' . strtolower($controller);
+                if (!empty($action)) {
+                    $url .= '/' . strtolower($action);
+                    if (!empty($actionOption)) {
+                        $url .= '/' . $actionOption;
+                    }
                 }
             }
         }
