@@ -29,9 +29,9 @@ class Route
             $actionName = strtolower($urlComponents[2]);
         }
         $controllerClass = 'controllers\\' . ucfirst($controllerName);
-        var_dump($controllerClass);
-        if (!class_exists($controllerClass)) {
 
+        if (!class_exists($controllerClass)) {
+            var_dump('ffffffff');
           // self::notFound();
 
         }
