@@ -11,7 +11,7 @@
 </head>
 <body>
 <header>
-    <h1>TEAMPROJECT </h1>
+    <h1>TEAMPROJECT</h1>
     <p>ADMIN PANEL</p>
     <div>
         <ul id="main-menu">
