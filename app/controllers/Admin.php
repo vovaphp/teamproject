@@ -15,7 +15,7 @@ class Admin extends AbstractController
 {
 private $userModel;
 private $SessionModel;
-private $imagePath = '/images/articles/';
+private $imagesStorPath = 'images/articles/';
 
 public function  __construct(){
 
@@ -42,15 +42,17 @@ public function  __construct(){
     public function createArticle()
     {
         $imageFileName = $_FILES['imageFile'];
+        $imagePath = $this->imagesStorPath.$imageFileName['name'];
+        move_uploaded_file($imageFileName['tmp_name'],$imagePath);
         $request = filter_input_array(INPUT_POST);
         //TODO validate
         $article = [
             'title' => $request['title'],
             'text' => $request['text'],
-            'url' => $this->imagePath.$imageFileName,
+            'url' => '/'.$imagePath,
         ];
 
-        $userId= $this->userModel->getUserId(); // id залогиненого пользователя
+        $userId= $this->userModel->getUserId( $_SESSION['login']); // id залогиненого пользователя
 
         $this->model->add($article, $userId);
         Route::redirect(Route::url('admin', 'index'));
@@ -60,22 +62,37 @@ public function  __construct(){
     {
         $id = filter_input(INPUT_POST, 'id');
         $article = $this->model->show($id);
-        $this->view->render('admin_edit', $article);
+        $this->view->render('admin_edit', [
+            'id'=>$article['id'],
+            'title'=>$article['title'],
+            'text'=>$article['text'],
+            'imagePath'=>$article['image'],
+        ]);
     }
 
 
     public function editArticle()
     {
-        $imageFileName = $_FILES['imageFile'];
         $request = filter_input_array(INPUT_POST);
+
+        if ($_FILES['imageFile']['name']){
+            $imageFileName = $_FILES['imageFile'];
+            $imagePath = $this->imagesStorPath.$imageFileName['name'];
+            move_uploaded_file($imageFileName['tmp_name'],$imagePath);
+            $imagePath='/'.$imagePath;
+        }else{
+            $imagePath = $request['newImageFile'];
+        }
+
         //TODO validate
         $article = [
             'title' => $request['title'],
             'text' => $request['text'],
-            'url' => $this->imagePath.$imageFileName,
+            'url' => $imagePath,
         ];
+
         $articleId = $request['id'];
-        $userId= $this->userModel->getUserId();//id залогиненого пользователя
+        $userId= $this->userModel->getUserId( $_SESSION['login']);//id залогиненого пользователя
 
         $this->model->update($article, $articleId, $userId);
         Route::redirect(Route::url('admin', 'index'));

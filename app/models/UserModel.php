@@ -67,12 +67,11 @@ class UserModel
     public function getUserId($login)
     {
         $sql = "SELECT id FROM `users` WHERE login = '{$login}'";
-        var_dump($sql);
         $result = $this->db->query($sql);
         if (!$result){
             return null;
         }
-        return mysqli_fetch_assoc($result);
+        return (int)mysqli_fetch_assoc($result)['id'];
     }
 
     public function getUserPass($login)

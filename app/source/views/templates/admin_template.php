@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>Index Page</title>
     <link rel="stylesheet" href="/css/style.css">
+    <style type="text/css">
+        header,main,footer {background-color: rgba(255, 253, 253, 0.75);
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -11,7 +15,7 @@
     <p>ADMIN PANEL</p>
     <div>
         <ul id="main-menu">
-                    <li class="page"><a href="<?=\core\Route::url('admin','createArticle')?>">Добавить статью</a></li>
+                    <li class="page"><a href="<?=\core\Route::url('admin','newArticle')?>">Добавить статью</a></li>
         </ul>
     </div>
     <div class="lang">
