@@ -20,15 +20,20 @@ class Route
         }
         $controllerName = 'index';
         if (!empty($urlComponents[1])) {
-            $controllerName = strtolower($urlComponents[0]);
+            $controllerName = strtolower($urlComponents[1]);
+        }elseif($urlComponents[0]=='admin'){
+            self::redirect(self::url('admin','articles','index'));
         }
         $actionName = 'index';
         if (!empty($urlComponents[2])) {
             $actionName = strtolower($urlComponents[2]);
         }
         $controllerClass = 'controllers\\' . ucfirst($controllerName);
+        var_dump($controllerClass);
         if (!class_exists($controllerClass)) {
-            self::notFound();
+
+          // self::notFound();
+
         }
         $controller = new $controllerClass;
         if (!empty($urlComponents[3])) {

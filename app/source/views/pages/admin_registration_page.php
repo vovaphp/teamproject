@@ -1,5 +1,5 @@
 <h2 class="userForm">Registration</h2>
-<form class="userForm" action="<?=  \core\Route::url('admin','admin', 'saveUser')?>" method="post" novalidate>
+<form class="userForm" action="<?=  \core\Route::url('admin','users', 'saveUser')?>" method="post" novalidate>
     <input class="userForm input" type="text" name="login" placeholder="login">
     <input class="userForm input" type="text" name="e-mail" placeholder="e-mail">
     <input class="userForm input" type="password" name="password" placeholder="password">

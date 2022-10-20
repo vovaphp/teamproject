@@ -16,8 +16,8 @@
     <div>
         <ul id="main-menu">
             <li class="page"><a href="/">HOME</a></li>
-            <li class="page"><a href="<?=\core\Route::url('admin','admin','index')?>">Cтатьи</a></li>
-            <li class="page"><a href="<?=\core\Route::url('admin','admin','newArticle')?>">Добавить статью</a></li>
+            <li class="page"><a href="<?=\core\Route::url('admin','articles','index')?>">Cтатьи</a></li>
+            <li class="page"><a href="<?=\core\Route::url('admin','articles','newArticle')?>">Добавить статью</a></li>
         </ul>
     </div>
     <div class="lang">
@@ -26,9 +26,9 @@
                 Привет
             <?=$_SESSION['login'];?>
         </p>
-        <p><a href="<?=\core\Route::url('admin','admin','users')?>">Список пользователей</a></p>
-        <p><a href="<?=\core\Route::url('admin','admin','createUser')?>">Добавить пользователя</a></p>
-        <p><a href="<?=\core\Route::url('admin','admin','exitUser')?>">Выйти</a></p>
+        <p><a href="<?=\core\Route::url('admin','users','users')?>">Список пользователей</a></p>
+        <p><a href="<?=\core\Route::url('admin','users','createUser')?>">Добавить пользователя</a></p>
+        <p><a href="<?=\core\Route::url('admin','users','exitUser')?>">Выйти</a></p>
 
             <?php endif; ?>
 

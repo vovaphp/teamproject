@@ -47,7 +47,7 @@ class Index extends AbstractController
         if (password_verify($_POST['password'], $password['password']) == true){
             $id = $this->userModel->getUserId($_POST['login']);
             $this->SessionModel->setUserSession($id);
-            Route::redirect('/admin/admin/index');
+            Route::redirect('/admin/articles/index');
         }
         Route::redirect('/index/index/authorisation');
     }

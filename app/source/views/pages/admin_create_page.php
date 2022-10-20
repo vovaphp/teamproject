@@ -1,5 +1,5 @@
 <h2>Create article</h2>
-<form class="create-edit-form" action="<?= \core\Route::url('admin','admin', 'createArticle') ?>" method="post" enctype="multipart/form-data">
+<form class="create-edit-form" action="<?= \core\Route::url('admin','articles', 'createArticle') ?>" method="post" enctype="multipart/form-data">
     <label for="title">Title:</label>
     <input type="text" name="title" required id="title">
 

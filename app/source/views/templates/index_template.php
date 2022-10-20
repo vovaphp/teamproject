@@ -13,7 +13,7 @@
         <ul id="main-menu">
             <?php if(!empty($articles)):?>
                 <?php foreach ($articles as $article):?>
-                    <li class="page"><a href="<?=\core\Route::url('index','read',$article['id'])?>" title="<?=$article['title']?>"><?=$article['title']?></a></li>
+                    <li class="page"><a href="<?=\core\Route::url('index','index','read',$article['id'])?>" title="<?=$article['title']?>"><?=$article['title']?></a></li>
                 <?php endforeach;?>
             <?php endif;?>
         </ul>
