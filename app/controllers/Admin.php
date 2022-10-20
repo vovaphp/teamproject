@@ -19,6 +19,9 @@ private $imagesStorPath = 'images/articles/';
 
 public function  __construct(){
 
+    if(empty($_SESSION['login'])){
+        Route::redirect('/');
+    }
     $this->view = new  View('admin');
     $this->model = new ArticleModel();
     $this->userModel = new UserModel();
@@ -117,25 +120,7 @@ public function  __construct(){
             'users' => $users,
         ]);
     }
-    /**
-     * authorisation action
-     */
-    public function authorisation(){
-        $this->view->render('admin_authorisation');
-    }
 
-    /**
-     * checking user param and sign-in
-     */
-    public function signIn(){
-        $password = $this->userModel->getUserPass($_POST['login']);
-        if (password_verify($_POST['password'], $password['password']) == true){
-            $id = $this->userModel->getUserId($_POST['login']);
-            $this->SessionModel->setUserSession($id);
-            Route::redirect('/admin/index');
-        }
-        Route::redirect('/admin/authorisation');
-    }
 
     /**
      * check validation, save user in db and starting his session

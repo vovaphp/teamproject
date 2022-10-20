@@ -19,7 +19,7 @@
         </ul>
     </div>
     <div class="lang">
-        <p><a href="<?=\core\Route::url('admin','authorisation')?>">Войти</a></p>
+        <p><a href="<?=\core\Route::url('index','authorisation')?>">Войти</a></p>
     </div>
 </header>
 <main>
