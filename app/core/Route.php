@@ -31,7 +31,7 @@ class Route
         $controllerClass = 'controllers\\' . ucfirst($controllerName);
 
         if (!class_exists($controllerClass)) {
-            var_dump('ffffffff');
+            var_dump($controllerClass);
           // self::notFound();
 
         }

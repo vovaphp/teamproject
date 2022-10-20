@@ -96,14 +96,14 @@ public function  __construct(){
         $userId= $this->userModel->getUserId($_SESSION['login']);
 
         $this->model->update($article, $articleId, $userId);
-        Route::redirect(Route::url('admin','article', 'index'));
+        Route::redirect(Route::url('admin','articles', 'index'));
     }
 
     public function deleteArticle()
     {
         $id = filter_input(INPUT_POST, 'id');
         $this->model->delete($id);
-        Route::redirect(Route::url('admin','article', 'index'));
+        Route::redirect(Route::url('admin','articles', 'index'));
     }
 
 }
