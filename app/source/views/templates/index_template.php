@@ -19,7 +19,11 @@
         </ul>
     </div>
     <div class="lang">
-        <p><a href="<?=\core\Route::url('index','index','authorisation')?>">Войти</a></p>
+        <?php if (isset($_SESSION['login'])):?>
+            <p><a href="<?=\core\Route::url('admin','users','index')?>">Админ панель</a></p>
+        <?php else: ?>
+            <p><a href="<?=\core\Route::url('index','index','authorisation')?>">Войти</a></p>
+        <?php endif; ?>
     </div>
 </header>
 <main>
