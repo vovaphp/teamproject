@@ -2,8 +2,7 @@
 <?php if (isset($_SESSION['error'])):?>
 <div id="errorDeleting">
     <?php echo $_SESSION['error'];
-    session_unset($_SESSION['error']); ?>
-
+    unset($_SESSION['error']); ?>
 </div>
 <?php endif;?>
 <table class="userForm">
