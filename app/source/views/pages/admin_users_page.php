@@ -1,4 +1,14 @@
 <h2 class="userForm">Users list</h2>
+<?php if (isset($_SESSION['error'])):?>
+<div id="errorDeleting">
+    <?php echo $_SESSION['error']?>
+</div>
+<?php endif;?>
+<?php
+if (isset($_SESSION['error'])){
+ session_unset($_SESSION['error']);
+}
+?>
 <table class="userForm">
     <thead>
     <tr>
