@@ -72,6 +72,18 @@ class ArticleModel
         }
     }
 
+    public function getCountArticlesByUserId(int $userId)
+    {
+        $sql = "SELECT COUNT(id) FROM articles WHERE user_id = {$userId};";
+
+        $result = $this->db->query($sql);
+        if (!$result) {
+            //TODO log with select error
+            return null;
+        }
+        //TODO debug
+        return (int)$result->fetch_assoc()['COUNT(id)'];
+    }
 
     public function delete(int $id)
     {
