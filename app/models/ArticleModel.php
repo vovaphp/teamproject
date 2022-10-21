@@ -106,6 +106,20 @@ class ArticleModel
 
     }
 
+
+    public function getCountArticlesByUserId(int $userId)
+    {
+        $sql = "SELECT COUNT(id) FROM articles WHERE user_id = {$userId};";
+
+        $result = $this->db->query($sql);
+        if (!$result) {
+            //TODO log with select error
+            return null;
+        }
+        //TODO debug
+        return (int)$result->fetch_assoc()['COUNT(id)'];
+    }
+
 /*    public function rewriter(int $id, string $title, string $text)
     {
         $sql = "UPDATE {$this->table} SET title = '$title', text = '$text' WHERE id = '$id'";
