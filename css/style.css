@@ -207,3 +207,12 @@ td.action>form>button{
 .error{
     border-color: #b8352f;
 }
+#errorDeleting{
+    padding-top: 2vh;
+    margin: 0 auto 2vh;
+    border: 5px solid #b8352f;
+    color: #b8352f;
+    width: 20vw;
+    height: 10vh;
+    text-align: center;
+}
