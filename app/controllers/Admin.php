@@ -156,6 +156,11 @@ public function  __construct(){
      */
     public function deleteUser(){
         $id = filter_input( INPUT_POST, 'id');
+        if ($this->model->getCountArticlesByUserId($id) != null){
+            SessionModel::start();
+            $_SESSION['error'] = 'Вы не можете удалить пользователя у которого есть статьи';
+            Route::redirect('/admin/users');
+        }
         if ($id == $this->userModel->getUserId($_SESSION['login'])){
             $this->userModel->delete($id);
             SessionModel::delUserSession();
