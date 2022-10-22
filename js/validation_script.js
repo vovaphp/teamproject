@@ -1,9 +1,9 @@
-let form = document.querySelector('form');
-let formInputs = document.querySelectorAll(".input");
-let inputLogin = document.querySelector('input[name = login]')
-let inputPass = document.querySelector('input[name = password]');
-let inputPassRepeat = document.querySelector('input[name = passRepeat]');
-let inputEmail = document.querySelector('input[name = e-mail]');
+const form = document.querySelector('form');
+const formInputs = document.querySelectorAll(".input");
+const inputLogin = document.querySelector('input[name = login]')
+const inputPass = document.querySelector('input[name = password]');
+const inputPassRepeat = document.querySelector('input[name = passRepeat]');
+const inputEmail = document.querySelector('input[name = e-mail]');
 let msgError;
 
 function validEmail(email){
