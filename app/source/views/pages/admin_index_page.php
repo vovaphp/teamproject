@@ -20,18 +20,15 @@
                 <td><?= $article['login'] ?></td>
                 <td>
                     <div class="del-edit-btn-box">
-                        <form action="<?=\core\Route::url('admin','deleteArticle')?>" method="post">
+                        <form action="<?=\core\Route::url('adminarticle','destroy')?>" method="post">
                             <input type="hidden" name="id" value="<?=$article['id']?>">
                             <button><img class="icons" src="/images/delete_icon.png" alt="delete"></button>
                         </form>
-                        <form action="<?=\core\Route::url('admin','editing')?>" method="post">
+                        <form action="<?=\core\Route::url('adminarticle','edit')?>" method="post">
                             <input type="hidden" name="id" value="<?=$article['id']?>">
                             <button><img class="icons" src="/images/edit_icon.png" alt="edit"></button>
                         </form>
                     </div>
-
-
-
                 </td>
             </tr>
         <?php endforeach; ?>
