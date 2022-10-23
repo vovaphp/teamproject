@@ -29,6 +29,7 @@ class Session
      * destroy session
      */
     public static function delUserSession(){
+        $_SESSION =array();
         session_destroy();
     }
 
