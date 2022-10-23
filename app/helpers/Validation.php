@@ -12,4 +12,28 @@ class Validation
         }
         return false;
     }
+
+    /**
+     * @param array $article
+     * @return bool
+     * return array with errors
+     */
+    static public function validateArticle($article){
+        $errorsArray =[];
+
+        if (empty($article['title'])) {
+            $errorsArray[] = 'вы не ввели заголовок';
+        }
+
+        if (empty($article['text'])) {
+            $errorsArray[] = 'содержание не может быть пустым';
+        }
+
+        if (empty($_FILES['imageFile']['name'])) {
+            if (empty($article['newImageFile'])){
+                $errorsArray[] = 'вы не выбрали файл';
+            }
+        }
+        return $errorsArray;
+    }
 }
