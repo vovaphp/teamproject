@@ -183,7 +183,7 @@ div.lang img{
     border: 2px solid #b3adad;
 }
 
-.userForm>h2{
+.userForm>h2, .userList{
     text-align: center;
 }
 .userForm>form{
