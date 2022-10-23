@@ -7,23 +7,16 @@ use core\AbstractController;
 use core\Route;
 use core\View;
 use models\ArticleModel;
-use models\UserModel;
-use models\SessionModel;
-use models\ValidationModel;
 
 class Adminarticle extends AbstractController
 {
-    private $userModel;
-    private $SessionModel;
+
     private $imagesStorPath = 'images/articles/';
 
     public function __construct()
     {
-
         $this->view = new  View('admin');
         $this->model = new ArticleModel();
-        $this->userModel = new UserModel();
-        $this->SessionModel = new SessionModel();
     }
 
     /**
@@ -62,7 +55,8 @@ class Adminarticle extends AbstractController
             'url' => '/' . $imagePath,
         ];
 
-        $userId = $this->userModel->getUserId($_SESSION['login']); // id залогиненого пользователя
+        //$userId = $this->userModel->getUserId($_SESSION['login']); // id залогиненого пользователя
+        $userId = $request['userId'];
 
         $this->model->add($article, $userId);
         Route::redirect(Route::url('adminarticle', 'index'));
@@ -105,8 +99,9 @@ class Adminarticle extends AbstractController
             'url' => $imagePath,
         ];
 
-        $articleId = $request['id'];
-        $userId = $this->userModel->getUserId($_SESSION['login']);//id залогиненого пользователя
+        $articleId = $request['articleId'];
+        //$userId = $this->userModel->getUserId($_SESSION['login']);//id залогиненого пользователя
+        $userId = $request['userId'];
 
         $this->model->update($article, $articleId, $userId);
         Route::redirect(Route::url('adminarticle', 'index'));
