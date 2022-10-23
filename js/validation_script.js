@@ -61,7 +61,7 @@ form.onsubmit = function (e) {
             msgError.push('Веддённый e-mail адрес не является корректным.');
         }
         if (counter >0){
-            document.getElementById('hidden').innerHTML = msgError;
+            document.getElementById('validation').innerHTML = msgError;
             return false;
         }
     }
