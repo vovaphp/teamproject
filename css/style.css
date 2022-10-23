@@ -170,48 +170,53 @@ div.lang img{
 .create-edit-form #title{
     padding: 5px 10px 5px 10px;
 }
-h2.userForm{
+:root{
+    --error-color: #b8352f;
+}
+.userForm>h2{
     text-align: center;
 }
-form.userForm{
+.userForm>form{
     margin: 0 auto 2vh;
     display: block;
     width: 24vw;
-    border: #fd360e 1vh solid;
+    border: var(--error-color) 1vh solid;
 }
-form.userForm>label{
+.userForm>form>label{
     display: block;
     text-align: center;
 }
-input.userForm{
+.userForm>input{
     margin-left: 7vw;
     margin-top: 2vh;
     margin-bottom: 2vh;
     width: 10vw;
 }
-table.userForm{
+.userForm>table{
     border-collapse: collapse;
     margin: 0 auto;
     border: 2px #000000 solid;
 }
-table.userForm> th, tr, td{
+.userForm>table> th, tr, td{
     border: 2px #000000 solid;
 }
 td.action>form>button{
     width: 100%;
 }
-#hidden{
+#validation{
     margin: 0 auto;
     width: 30vw;
+    color: var(--error-color);
+    text-align: center;
 }
 .error{
-    border-color: #b8352f;
+    border-color: var(--error-color);
 }
 #errorDeleting{
     padding-top: 2vh;
     margin: 0 auto 2vh;
-    border: 5px solid #b8352f;
-    color: #b8352f;
+    border: 5px solid var(--error-color);
+    color: var(--error-color);
     width: 20vw;
     height: 10vh;
     text-align: center;

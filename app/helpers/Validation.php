@@ -1,8 +1,8 @@
 <?php
 
-namespace models;
+namespace helpers;
 
-class ValidationModel
+class Validation
 {
     static public function fieldsUser(array $user):bool{
         if (strlen($user['login']) >= 4  && $user['password'] === $user['passRepeat'] && isset($user['e-mail'])){
