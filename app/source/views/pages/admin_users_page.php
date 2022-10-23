@@ -1,7 +1,9 @@
 <h2 class="userForm">Users list</h2>
-<div id="errorDeleting">
-    <?php \helpers\Session::getErrors(); ?>
-</div>
+<?php if (isset($_SESSION['errors'])):?>
+    <div id="errorDeleting">
+        <?php \helpers\Session::getErrors(); ?>
+    </div>
+<?php endif; ?>
 <table class="userTable">
     <thead>
         <tr>
