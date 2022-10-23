@@ -19,13 +19,14 @@
     </nav>
     <div class="lang">
         <p> <?php
+            \helpers\Session::start();
             if (isset($_SESSION['login'])):?>
                 Привет
             <?=$_SESSION['login'];?>
         </p>
-        <p><a href="<?=\core\Route::url('admin','users')?>">Список пользователей</a></p>
-        <p><a href="<?=\core\Route::url('admin','createUser')?>">Добавить пользователя</a></p>
-        <p><a href="<?=\core\Route::url('admin','exitUser')?>">Выйти</a></p>
+        <p><a href="<?=\core\Route::url('adminusers','users')?>">Список пользователей</a></p>
+        <p><a href="<?=\core\Route::url('adminusers','createUser')?>">Добавить пользователя</a></p>
+        <p><a href="<?=\core\Route::url('adminusers','exitUser')?>">Выйти</a></p>
 
             <?php endif; ?>
 

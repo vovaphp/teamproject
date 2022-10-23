@@ -28,19 +28,16 @@ class Route
         }
         $controller = new $controllerClass;
         if (!empty($urlComponents[2])) {
-            $actionOptions = $urlComponents[2];
-            self::actionCaller($controller,$actionName,$actionOptions);
-        }else{
-            self::actionCaller($controller,$actionName);
+            $_REQUEST['actionOptions'] = $urlComponents[2];
         }
-
+        self::actionCaller($controller,$actionName);
     }
 
-    static private function actionCaller(controllerInterface $controller, string $action,string $actionOptions=null){
+    static private function actionCaller(controllerInterface $controller, string $action){
         if (!method_exists($controller, $action)) {
             self::notFound();
         }
-        $controller->$action($actionOptions);
+        $controller->$action();
     }
 
     static public function notFound(){

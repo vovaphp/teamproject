@@ -19,11 +19,7 @@
         </ul>
     </nav>
     <div class="lang">
-        <?php if (isset($_SESSION['login'])):?>
-            <p><a href="<?=\core\Route::url('admin','index')?>">Админ панель</a></p>
-        <?php else: ?>
-            <p><a href="<?=\core\Route::url('admin','authorisation')?>">Войти</a></p>
-        <?php endif; ?>
+
     </div>
 </header>
 <main>

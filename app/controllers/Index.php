@@ -23,8 +23,8 @@ class Index extends AbstractController
             'articles' => $articles,
         ]);
     }
-    public function read(string $actionOption){
-        $id = $actionOption;
+    public function read(){
+        $id = $_REQUEST['actionOptions'];
         $article = $this->model->selectArticle($id);
         $this->view->render('index_article',$article);
     }
