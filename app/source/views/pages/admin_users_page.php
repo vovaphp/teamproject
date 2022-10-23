@@ -1,4 +1,4 @@
-<h2 class="userForm">Users list</h2>
+<h2 class="userList">Users list</h2>
 <?php if (isset($_SESSION['errors'])):?>
     <div id="errorDeleting">
         <?php \helpers\Session::getErrors(); ?>
@@ -21,13 +21,13 @@
                     <td><?=$user['login'] ?></td>
                     <td><?=$user['e-mail'] ?></td>
                     <td class="action">
-                        <form  action="<?= \core\Route::url('admin', 'deleteUser') ?>" method="post">
+                        <form  action="<?= \core\Route::url('adminusers', 'deleteUser') ?>" method="post">
                             <input type="hidden" name="id" value="<?= $user['id']?>">
                             <button>&#128465;</button>
                         </form>
                     </td>
                     <td class="action">
-                        <form action="<?= \core\Route::url('admin', 'editUser') ?>" method="post">
+                        <form action="<?= \core\Route::url('adminusers', 'editUser') ?>" method="post">
                             <input type="hidden" name="id" value="<?= $user['id']?>">
                             <button>&#9998;</button>
                         </form>
