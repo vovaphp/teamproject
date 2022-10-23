@@ -202,12 +202,12 @@ h2.userForm{
     margin-bottom: 2vh;
     width: 10vw;
 }
-.userForm>table{
+.userTable{
     border-collapse: collapse;
     margin: 0 auto;
     border: 2px #000000 solid;
 }
-.userForm>table> th, tr, td{
+.userTable> th, tr, td{
     border: 2px #000000 solid;
 }
 td.action>form>button{
