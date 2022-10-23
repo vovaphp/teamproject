@@ -4,22 +4,19 @@
     <meta charset="UTF-8">
     <title>Index Page</title>
     <link rel="stylesheet" href="/css/style.css">
-    <style type="text/css">
-        header,main,footer {background-color: rgba(255, 253, 253, 0.75);
-        }
-    </style>
+    <link rel="stylesheet" href="/css/style_admin.css">
 </head>
 <body>
 <header>
     <h1>TEAMPROJECT</h1>
     <p>ADMIN PANEL</p>
-    <div>
+    <nav>
         <ul id="main-menu">
             <li class="page"><a href="/">HOME</a></li>
             <li class="page"><a href="<?=\core\Route::url('admin','index')?>">Cтатьи</a></li>
             <li class="page"><a href="<?=\core\Route::url('admin','newArticle')?>">Добавить статью</a></li>
         </ul>
-    </div>
+    </nav>
     <div class="lang">
         <p> <?php
             if (isset($_SESSION['login'])):?>

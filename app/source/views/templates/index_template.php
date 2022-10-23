@@ -9,7 +9,7 @@
 <header>
     <h1>TEAMPROJECT </h1>
     <p>FRONTEND PAGES</p>
-    <div>
+    <nav>
         <ul id="main-menu">
             <?php if(!empty($articles)):?>
                 <?php foreach ($articles as $article):?>
@@ -17,7 +17,7 @@
                 <?php endforeach;?>
             <?php endif;?>
         </ul>
-    </div>
+    </nav>
     <div class="lang">
         <?php if (isset($_SESSION['login'])):?>
             <p><a href="<?=\core\Route::url('admin','index')?>">Админ панель</a></p>
