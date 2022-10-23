@@ -41,4 +41,14 @@ class Session
             Route::redirect('/adminusers/authorisation');
         }
     }
+
+    /**
+     * if errors set - echo errors
+     */
+    public static function getErrors(){
+        if (isset($_SESSION['errors'])){
+            echo $_SESSION['errors'];
+            unset($_SESSION['errors']);
+        }
+    }
 }
