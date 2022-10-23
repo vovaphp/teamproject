@@ -2,6 +2,8 @@
 
 namespace helpers;
 
+use core\Route;
+
 class Session
 {
     /**
@@ -28,5 +30,14 @@ class Session
      */
     public static function delUserSession(){
         session_destroy();
+    }
+
+    /**
+     * check authorisation user and redirect if he don`t authorized
+     */
+    public static function didAuthorized(){
+        if (!isset($_SESSION['login'])){
+            Route::redirect('/adminusers/authorisation');
+        }
     }
 }
