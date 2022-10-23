@@ -46,6 +46,7 @@ class Session
      * if errors set - echo errors
      */
     public static function getErrors(){
+        self::start();
         if (isset($_SESSION['errors'])){
             echo $_SESSION['errors'];
             unset($_SESSION['errors']);
