@@ -68,7 +68,8 @@ class Adminusers extends AbstractController
      */
     public function deleteUser(){
         $id = filter_input( INPUT_POST, 'id');
-        if (ArticleModel::getCountArticlesByUserId($id) != null){
+        $articleModel = new Articlemodel();
+        if ($articleModel->getCountArticlesByUserId($id) != null){
             Session::start();
             $_SESSION['errors'] = 'Вы не можете удалить пользователя у которого есть статьи';
             Route::redirect('/adminusers/index');
