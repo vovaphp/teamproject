@@ -8,6 +8,7 @@ class ArticleModel
      * @var string table name
      */
     protected $table = 'articles';
+
     /**
      * @var \mysqli
      */
@@ -24,6 +25,10 @@ class ArticleModel
         }
     }
 
+    /**
+     * @return array|mixed
+     * return array with articles from DB
+     */
     public function all()
     {
         $sql = "SELECT {$this->table}.id, {$this->table}.title, {$this->table}.image, {$this->table}.text, 
@@ -36,15 +41,19 @@ class ArticleModel
             //TODO log with select error
             return [];
         }
-        //TODO debug
+
         return $result->fetch_all(MYSQLI_ASSOC);
         //результат выборки:
         //id 	title 	image   text 	date 	login
     }
-    
-    public function selectArticle(int $id)
+
+    /**
+     * @param int $articleId
+     * @return array|null
+     */
+    public function selectArticle(int $articleId)
     {
-        $sql = "SELECT * FROM {$this->table} WHERE id = $id";
+        $sql = "SELECT * FROM {$this->table} WHERE id = $articleId";
         $result = $this->db->query($sql);
         if (!$result) {
             //TODO log with select error
@@ -54,13 +63,18 @@ class ArticleModel
 
     }
 
+    /**
+     * @param array $article
+     * @param int $userId
+     * @return bool|\mysqli_result
+     * add article to DB
+     */
     public function add(array $article, int $userId)
     {
         $sql = "INSERT INTO {$this->table} (`title`, `text`, `image`, `user_id`) 
         VALUES ('{$article['title']}','{$article['text']}','{$article['url']}','{$userId}')";
         return $this->db->query($sql);
     }
-
 
     public function update(array $article, int $articleId, int $userId)
     {
@@ -72,30 +86,27 @@ class ArticleModel
         }
     }
 
-
-    public function delete(int $id)
+    /**
+     * @param int $articleId
+     * @return bool|\mysqli_result
+     * delete article from DB
+     */
+    public function destroy(int $articleId)
     {
-        $sql = "DELETE FROM {$this->table} WHERE id = {$id}";
+        $sql = "DELETE FROM {$this->table} WHERE id = {$articleId}";
         return $this->db->query($sql);
     }
 
-/*    public function editor(int $id)
-    {
-        $sql = "SELECT * FROM {$this->table} WHERE id = $id";
-        $result = $this->db->query($sql);
-        if (!$result) {
-            //TODO log with select error
-            return [];
-        }
-        return $result->fetch_assoc();
-
-    }*/
-
-    public function show(int $id)
+    /**
+     * @param int $articleId
+     * @return array|null
+     * return array with one article
+     */
+    public function show(int $articleId)
     {
         $sql = "SELECT {$this->table}.id, {$this->table}.title, {$this->table}.image, {$this->table}.text, 
         {$this->table}.date, users.login FROM {$this->table} INNER JOIN users WHERE 
-        {$this->table}.user_id = users.id and {$this->table}.id={$id};";
+        {$this->table}.user_id = users.id and {$this->table}.id={$articleId};";
 
         $result = $this->db->query($sql);
         if (!$result) {
@@ -103,10 +114,13 @@ class ArticleModel
             return [];
         }
         return $result->fetch_assoc();
-
     }
 
-
+    /**
+     * @param int $userId
+     * @return int|null
+     * return count of user articles
+     */
     public function getCountArticlesByUserId(int $userId)
     {
         $sql = "SELECT COUNT(id) FROM articles WHERE user_id = {$userId};";
@@ -116,7 +130,6 @@ class ArticleModel
             //TODO log with select error
             return null;
         }
-        //TODO debug
         return (int)$result->fetch_assoc()['COUNT(id)'];
     }
 
@@ -137,7 +150,7 @@ class ArticleModel
             //TODO log with select error
             return [];
         }
-        //TODO debug
+
         return $result->fetch_all(MYSQLI_ASSOC);
     }*/
 }

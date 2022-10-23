@@ -13,8 +13,8 @@
     <nav>
         <ul id="main-menu">
             <li class="page"><a href="/">HOME</a></li>
-            <li class="page"><a href="<?=\core\Route::url('admin','index')?>">Cтатьи</a></li>
-            <li class="page"><a href="<?=\core\Route::url('admin','newArticle')?>">Добавить статью</a></li>
+            <li class="page"><a href="<?=\core\Route::url('adminarticle','index')?>">Cтатьи</a></li>
+            <li class="page"><a href="<?=\core\Route::url('adminarticle','create')?>">Добавить статью</a></li>
         </ul>
     </nav>
     <div class="lang">

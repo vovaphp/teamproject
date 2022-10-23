@@ -43,9 +43,9 @@ class Route
         $controller->$action($actionOptions);
     }
 
-    static public function notFound()
-    {
+    static public function notFound(){
         http_response_code(404);
+        header("Location: /app/source/views/pages/not-found-page.php");
         exit();
     }
 
