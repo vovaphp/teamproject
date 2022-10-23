@@ -7,6 +7,7 @@ use core\AbstractController;
 use core\Route;
 use core\View;
 use models\ArticleModel;
+use helpers\Session;
 
 class Adminarticle extends AbstractController
 {
@@ -15,6 +16,7 @@ class Adminarticle extends AbstractController
 
     public function __construct()
     {
+        Session::didAuthorized();
         $this->view = new  View('admin');
         $this->model = new ArticleModel();
     }
