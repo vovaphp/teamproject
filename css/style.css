@@ -196,7 +196,7 @@ div.lang img{
     display: block;
     text-align: center;
 }
-.userForm>input{
+.userForm>form>input{
     margin-left: 7vw;
     margin-top: 2vh;
     margin-bottom: 2vh;
