@@ -74,6 +74,10 @@ class UserModel
         return (int)mysqli_fetch_assoc($result)['id'];
     }
 
+    /**
+     * @param $login
+     * @return array|false|string[]|null
+     */
     public function getUserPass($login)
     {
         $sql = "SELECT password FROM `users` WHERE login = '{$login}'";
