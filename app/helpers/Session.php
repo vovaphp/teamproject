@@ -29,7 +29,7 @@ class Session
      * destroy session
      */
     public static function delUserSession(){
-        $_SESSION =array();
+        self::start();
         session_destroy();
     }
 
