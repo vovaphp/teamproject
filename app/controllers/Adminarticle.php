@@ -6,6 +6,7 @@ namespace controllers;
 use core\AbstractController;
 use core\Route;
 use core\View;
+use helpers\Validation;
 use models\ArticleModel;
 use helpers\Session;
 
@@ -46,19 +47,27 @@ class Adminarticle extends AbstractController
      */
     public function store()
     {
+        if(!$_POST){
+            Route::notFound();
+        }
         $imageFileName = $_FILES['imageFile'];
         $imagePath = $this->imagesStorPath . $imageFileName['name'];
         move_uploaded_file($imageFileName['tmp_name'], $imagePath);
         $request = filter_input_array(INPUT_POST);
-        //TODO validate
+
+        if(Validation::validateArticle($request)){
+            $this->view->render('admin_create', ['errors' => Validation::validateArticle($request)]);
+            exit();
+        }
+
         $article = [
             'title' => $request['title'],
             'text' => $request['text'],
             'url' => '/' . $imagePath,
         ];
 
-        //$userId = $this->userModel->getUserId($_SESSION['login']); // id залогиненого пользователя
-        $userId = $request['userId'];
+        Session::start();
+        $userId = $_SESSION['user_id'];
 
         $this->model->add($article, $userId);
         Route::redirect(Route::url('adminarticle', 'index'));
@@ -72,8 +81,8 @@ class Adminarticle extends AbstractController
         if(!$_POST){
             Route::notFound();
         }
-        $id = filter_input(INPUT_POST, 'id');
-        $article = $this->model->show($id);
+        $articleId = filter_input(INPUT_POST, 'id');
+        $article = $this->model->show($articleId);
         $this->view->render('admin_edit', [
             'article' => $article,
         ]);
@@ -84,7 +93,21 @@ class Adminarticle extends AbstractController
      */
     public function update()
     {
+        if(!$_POST){
+            Route::notFound();
+        }
         $request = filter_input_array(INPUT_POST);
+        $articleId = $request['articleId'];
+
+        if(Validation::validateArticle($request)){
+            $errorsArray=Validation::validateArticle($request);
+            $article = $this->model->show($articleId);
+            $this->view->render('admin_edit', [
+                'article' => $article,
+                'errors' => $errorsArray,
+            ]);
+            exit();
+        }
 
         if ($_FILES['imageFile']['name']) {
             $imageFileName = $_FILES['imageFile'];
@@ -101,9 +124,8 @@ class Adminarticle extends AbstractController
             'url' => $imagePath,
         ];
 
-        $articleId = $request['articleId'];
-        //$userId = $this->userModel->getUserId($_SESSION['login']);//id залогиненого пользователя
-        $userId = $request['userId'];
+        Session::start();
+        $userId = $_SESSION['user_id'];
 
         $this->model->update($article, $articleId, $userId);
         Route::redirect(Route::url('adminarticle', 'index'));
@@ -114,6 +136,9 @@ class Adminarticle extends AbstractController
      */
     public function destroy()
     {
+        if(!$_POST){
+            Route::notFound();
+        }
         $id = filter_input(INPUT_POST, 'id');
         $this->model->destroy($id);
         Route::redirect(Route::url('adminarticle', 'index'));
