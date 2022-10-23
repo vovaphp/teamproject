@@ -4,6 +4,7 @@ namespace controllers;
 
 use core\AbstractController;
 use core\Route;
+use core\View;
 use models\UserModel;
 use helpers\Session;
 use helpers\Validation;
@@ -15,6 +16,7 @@ class Adminusers extends AbstractController
      */
     public function __construct(){
         $this->model = new UserModel();
+        $this->view = new View();
     }
 
     /**
