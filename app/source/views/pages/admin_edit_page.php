@@ -1,9 +1,18 @@
 <h2>Edit article</h2>
-<form class="create-edit-form" action="<?= \core\Route::url('admin', 'editarticle') ?>" method="post"
+
+<div id="create-edit-errors">
+    <?php if (!empty($errors)): ?>
+        <?php foreach ($errors as $error):?>
+            - <?=$error?><br>
+        <?php endforeach;?>
+    <?php endif;?>
+</div>
+
+<form class="create-edit-form" action="<?= \core\Route::url('adminarticle', 'update') ?>" method="post"
       enctype="multipart/form-data">
 
     <label for="title">Title:</label>
-    <input type="text" name="title" required id="title" value="<?= $article['title'] ?>">
+    <input type="text" name="title" id="title" value="<?= $article['title'] ?>">
 
     <label for="text">Text:</label>
     <textarea name="text" id="text"><?= $article['text'] ?></textarea>
@@ -18,10 +27,6 @@
     <input type="hidden" name="articleId" value="<?= $article['id'] ?>">
     <input type="hidden" name="newImageFile" value="<?= $article['image'] ?>">
 
-    <input type="hidden" name="userId" value="<?= $_SESSION['user_id']?>">
-
-    <div>
-        <input class="submit" type="submit" value="Save">
-    </div>
+    <input type="submit" value="Save">
 
 </form>
