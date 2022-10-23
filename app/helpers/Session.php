@@ -37,6 +37,7 @@ class Session
      * check authorisation user and redirect if he don`t authorized
      */
     public static function didAuthorized(){
+        self::start();
         if (!isset($_SESSION['login'])){
             Route::redirect('/adminusers/authorisation');
         }
@@ -46,9 +47,8 @@ class Session
      * if errors set - echo errors
      */
     public static function getErrors(){
-        if (isset($_SESSION['errors'])){
-            echo $_SESSION['errors'];
-            unset($_SESSION['errors']);
-        }
+        self::start();
+        echo $_SESSION['errors'];
+        unset($_SESSION['errors']);
     }
 }

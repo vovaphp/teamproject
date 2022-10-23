@@ -23,6 +23,7 @@ class Adminusers extends AbstractController
      * Adminuser index page
      */
     public function index(){
+        Session::didAuthorized();
         $users = $this->model->all();
         $this->view->render('admin_users', [
             'users' => $users,
@@ -32,6 +33,7 @@ class Adminusers extends AbstractController
      * registration action
      */
     public function createUser(){
+        Session::didAuthorized();
         $this->view->render('admin_registration');
     }
     /**
@@ -47,6 +49,7 @@ class Adminusers extends AbstractController
         $user = $_POST;
         $password = $this->model->getUserPass($user['login']);
         if (password_verify($user['password'], $password['password']) == true){
+            $user['id'] = $this->model->getUserId($user['login']);
             Session::setUserSession($user);
             Route::redirect('/adminusers/index');
         }

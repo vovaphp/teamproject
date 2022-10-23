@@ -1,6 +1,6 @@
 <div class="userForm">
     <h2>Edit user</h2>
-    <form method="post" action="<?=core\Route::url('adminuser', 'editUserSave') ?>">
+    <form method="post" action="<?=core\Route::url('adminusers', 'editUserSave') ?>">
         <label for="login">Login</label>
         <input type="text" name="login" required id="login" value="<?= $user['login']?>">
         <label for="e-mail">E-mail</label>
