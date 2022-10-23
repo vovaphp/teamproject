@@ -15,8 +15,10 @@
     <label for="file">Change image (if it is needed):</label>
     <input type="file" name="imageFile" id="file" accept="image/*">
 
-    <input type="hidden" name="id" value="<?= $article['id'] ?>">
+    <input type="hidden" name="articleId" value="<?= $article['id'] ?>">
     <input type="hidden" name="newImageFile" value="<?= $article['image'] ?>">
+
+    <input type="hidden" name="userId" value="<?= $_SESSION['user_id']?>">
 
     <div>
         <input class="submit" type="submit" value="Save">

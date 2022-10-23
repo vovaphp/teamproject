@@ -10,6 +10,8 @@
     <label for="file">Choose image file:</label>
     <input type="file" name="imageFile" id="file" accept="image/*">
 
+    <input type="hidden" name="userId" value="<?= $_SESSION['user_id']?>">
+
     <input type="submit" value="Create">
 
 </form>
