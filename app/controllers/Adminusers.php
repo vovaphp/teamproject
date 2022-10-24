@@ -63,8 +63,7 @@ class Adminusers extends AbstractController
             $user = $_POST;
             $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
             $this->model->add($user);
-            Session::setUserSession($user);
-            Route::redirect('/adminusers/users');
+            Route::redirect('/adminusers/index');
         }
         Route::redirect('/adminusers/createUser');
     }
@@ -72,6 +71,7 @@ class Adminusers extends AbstractController
      * deleting user and redirect on main page
      */
     public function deleteUser(){
+        Session::start();
         $id = filter_input( INPUT_POST, 'id');
         $articleModel = new Articlemodel();
         if ($articleModel->getCountArticlesByUserId($id) != null){
