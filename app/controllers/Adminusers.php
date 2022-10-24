@@ -16,7 +16,7 @@ class Adminusers extends AbstractController
      */
     public function __construct(){
         $this->model = new UserModel();
-        $this->view = new View();
+        $this->view = new View('admin');
     }
 
     /**
