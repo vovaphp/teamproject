@@ -149,6 +149,7 @@ div.lang img{
     display: flex;
     flex-direction: column;
 }
+
 .create-edit-form label{
     margin-top: 15px;
     margin-bottom: 5px;
@@ -174,9 +175,15 @@ div.lang img{
 .create-edit-form #title{
     padding: 5px 10px 5px 10px;
 }
+
 :root{
     --error-color: #b8352f;
 }
+
+.create-edit-errors{
+    color: var(--error-color);
+}
+
 .preview-image{
     height: 100px;
     border-radius: 3px;
