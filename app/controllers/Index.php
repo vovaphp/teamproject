@@ -10,12 +10,18 @@ use models\ArticleModel;
 
 class Index extends AbstractController
 {
+    /**
+     * constructor
+     */
     public function __construct()
     {
         $this->view = new View();
         $this->model = new ArticleModel();
     }
 
+    /**
+     * controller main page index
+     */
     public function index()
     {
         $articles = $this->model->all();
@@ -23,6 +29,10 @@ class Index extends AbstractController
             'articles' => $articles,
         ]);
     }
+
+    /**
+     * action read article
+     */
     public function read(){
         $id = $_REQUEST['actionOptions'];
         $article = $this->model->selectArticle($id);

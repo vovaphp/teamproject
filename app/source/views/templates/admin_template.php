@@ -24,7 +24,7 @@
                 Привет
             <?=$_SESSION['login'];?>
         </p>
-        <p><a href="<?=\core\Route::url('adminusers','users')?>">Список пользователей</a></p>
+        <p><a href="<?=\core\Route::url('adminusers','index')?>">Список пользователей</a></p>
         <p><a href="<?=\core\Route::url('adminusers','createUser')?>">Добавить пользователя</a></p>
         <p><a href="<?=\core\Route::url('adminusers','exitUser')?>">Выйти</a></p>
 
