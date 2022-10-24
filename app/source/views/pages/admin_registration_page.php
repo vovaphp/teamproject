@@ -1,6 +1,6 @@
 <div class="userForm">
     <h2>Registration</h2>
-    <form action="<?=  \core\Route::url('admin', 'saveUser')?>" method="post" novalidate>
+    <form action="<?=  \core\Route::url('adminusers', 'saveUser')?>" method="post" novalidate>
         <label for="login">Login</label>
         <input type="text" name="login" id="login" placeholder="login">
         <label for="e-mail">E-mail</label>
