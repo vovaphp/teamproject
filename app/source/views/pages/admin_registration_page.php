@@ -12,7 +12,5 @@
         <input type="submit" value="Create account">
     </form>
     <div id="validation"></div>
-    <?php if($page == 'admin_registration'): ?>
-        <script src="/js/validation_script.js"></script>
-    <?php endif;?>
+    <script src="/js/validation_script.js"></script>
 </div>
