@@ -46,12 +46,12 @@ class Adminusers extends AbstractController
      * checking user param and sign-in
      */
     public function signIn(){
-        $user = $_POST;
+        $user = filter_input_array(INPUT_POST);
         $password = $this->model->getUserPass($user['login']);
-        if (password_verify($user['password'], $password['password']) == true){
+        if (password_verify($user['password'], $password['password'])){
             $user['id'] = $this->model->getUserId($user['login']);
             Session::setUserSession($user);
-            Route::redirect('/adminusers/index');
+            Route::redirect('/adminarticle/index');
         }
         Route::redirect('/adminusers/authorisation');
     }
